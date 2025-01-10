@@ -112,9 +112,6 @@ img {
     font-size: 14px;
     font-weight: 500;
 }
-
-
-
 .status.relaunch {
     padding: 2px 4px;
     background: #1795ce;
@@ -172,36 +169,6 @@ img {
     color: var(--white);
 }
 
-.centers-list {
-    margin: 0 auto; /* Center the table horizontally */
-    width: 100%; /* Make the table span the entire available space */
-    border: 1px solid #ddd; /* Border for the table */
-    border-collapse: collapse; /* Remove gaps between table borders */
-    font-family: Arial, sans-serif; /* Nice readable font */
-    font-size: 16px; /* Standard font size */
-}
-
-.centers-list th, .centers-list td {
-    padding: 15px 20px; /* Add space inside cells */
-    text-align: left; /* Align text to the left */
-    border: 1px solid #ddd; /* Borders around cells */
-    word-wrap: break-word; /* Prevent text overflow */
-}
-
-.centers-list th {
-    background-color: #f4f4f4; /* Light gray background for headers */
-    font-weight: bold; /* Make header text bold */
-    font-size: 18px; /* Slightly larger font for headers */
-}
-
-.centers-list tr:nth-child(even) {
-    background-color: #f9f9f9; /* Add alternating row colors */
-}
-
-.centers-list tr:hover {
-    background-color: #f0f8ff; /* Highlight row on hover (light blue) */
-    cursor: pointer; /* Show pointer cursor on hover */
-}
 
 
 
