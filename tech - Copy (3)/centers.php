@@ -11,7 +11,6 @@ include('connection.php');
 
 // Default filter is to show all centers
 $statusFilter = isset($_GET['status']) ? $_GET['status'] : 'all';
-$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
 
 // Query to count centers based on their status
 $statuses = ['active', 'inactive', 'relaunch', 'pending'];
@@ -23,13 +22,13 @@ foreach ($statuses as $status) {
     $counts[$status] = $stmt->fetchColumn();
 }
 
-// Query to fetch centers based on selected status and search query
+// Query to fetch centers based on selected status
 if ($statusFilter == 'all') {
-    $stmt = $pdo->prepare("SELECT * FROM centers WHERE name LIKE ?");
-    $stmt->execute(['%' . $searchQuery . '%']);
+    $stmt = $pdo->prepare("SELECT * FROM centers");
+    $stmt->execute();
 } else {
-    $stmt = $pdo->prepare("SELECT * FROM centers WHERE status = ? AND name LIKE ?");
-    $stmt->execute([$statusFilter, '%' . $searchQuery . '%']);
+    $stmt = $pdo->prepare("SELECT * FROM centers WHERE status = ?");
+    $stmt->execute([$statusFilter]);
 }
 
 $centers = $stmt->fetchAll();
@@ -48,13 +47,9 @@ $centers = $stmt->fetchAll();
         <?php include('sidenav.php'); ?>
     </div>
 
-    <div class="topnav">
-        <?php include('topnav.php'); ?>
-    </div>
-
     <div class="cardBox">
         <!-- Total Centers Card -->
-        <div class="card" onclick="window.location.href='index.php?status=all'"> 
+        <div class="card" onclick="window.location.href='centers.php?status=all'"> 
             <div>
                 <div class="numbers"><?php echo count($centers); ?></div>
                 <div class="cardName">Centers</div>
@@ -65,7 +60,7 @@ $centers = $stmt->fetchAll();
         </div>
 
         <!-- Active Centers Card -->
-        <div class="card" onclick="window.location.href='index.php?status=active'"> 
+        <div class="card" onclick="window.location.href='centers.php?status=active'"> 
             <div>
                 <div class="numbers"><?php echo $counts['active']; ?></div>
                 <div class="cardName">Active</div>
@@ -76,7 +71,7 @@ $centers = $stmt->fetchAll();
         </div>
 
         <!-- Inactive Centers Card -->
-        <div class="card" onclick="window.location.href='index.php?status=inactive'"> 
+        <div class="card" onclick="window.location.href='centers.php?status=inactive'"> 
             <div>
                 <div class="numbers"><?php echo $counts['inactive']; ?></div>
                 <div class="cardName">Inactive</div>
@@ -87,7 +82,7 @@ $centers = $stmt->fetchAll();
         </div>
 
         <!-- Relaunching Centers Card -->
-        <div class="card" onclick="window.location.href='index.php?status=relaunch'"> 
+        <div class="card" onclick="window.location.href='centers.php?status=relaunch'"> 
             <div>
                 <div class="numbers"><?php echo $counts['relaunch']; ?></div>
                 <div class="cardName">Relaunching</div>

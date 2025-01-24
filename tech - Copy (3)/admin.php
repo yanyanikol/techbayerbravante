@@ -213,26 +213,36 @@ $users = $conn->query("SELECT * FROM users");
     <h3>User List</h3>
 <table>
     <tr>
-        <th>Photo</th>
         <th>First Name</th>
         <th>Middle Name</th>
         <th>Last Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Contact</th>
+        <th>Position</th>
+        <th>Email</th>
         <th>Role</th>
+        <th>Password</th>
+        <th>Photo</th>
         <th>Actions</th>
     </tr>
     <?php while ($row = $users->fetch_assoc()) { ?>
     <tr>
+        <td><?php echo $row['first_name']; ?></td>
+        <td><?php echo $row['middle_name']; ?></td>
+        <td><?php echo $row['last_name']; ?></td>
+        <td><?php echo $row['age']; ?></td>
+        <td><?php echo $row['gender']; ?></td>
+        <td><?php echo $row['contact']; ?></td>
+        <td><?php echo $row['position']; ?></td>
+        <td><?php echo $row['email']; ?></td>
+        <td><?php echo $row['role']; ?></td>
+        <td><?php echo $row['password']; ?></td>
         <td>
             <?php if ($row['image']) { ?>
                 <img src="<?php echo $row['image']; ?>" alt="Profile Picture" width="50" height="50">
             <?php } ?>
         </td>
-        <td><?php echo $row['first_name']; ?></td>
-        <td><?php echo $row['middle_name']; ?></td>
-        <td><?php echo $row['last_name']; ?></td>
-        <td><?php echo $row['role']; ?></td>
-   
-
         <td>
             <form method="POST">
                 <input type="hidden" name="user_id" value="<?php echo $row['id']; ?>">

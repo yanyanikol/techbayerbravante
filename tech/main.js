@@ -40,3 +40,20 @@ window.addEventListener('click', (event) => {
         modal.style.display = 'none';
     }
 });
+
+function searchCenters() {
+  let input = document.getElementById('search').value.toLowerCase();
+  let rows = document.querySelectorAll('table tbody tr');
+  
+  rows.forEach(row => {
+      let centerName = row.cells[0].textContent.toLowerCase();
+      let location = row.cells[1].textContent.toLowerCase();
+      let manager = row.cells[2].textContent.toLowerCase();
+      
+      if (centerName.includes(input) || location.includes(input) || manager.includes(input)) {
+          row.style.display = '';
+      } else {
+          row.style.display = 'none';
+      }
+  });
+}
